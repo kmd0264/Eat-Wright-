@@ -1,3 +1,8 @@
+// ===============================
+//           ABOUT VIEW
+//     Displays About screen UI
+// ===============================
+
 import MainMenuView from './MainMenuView.js';
 import sfx from '../../assets/audio/sfx/sfx.js';
 import music from '../../assets/audio/music/music.js';
@@ -7,10 +12,16 @@ export default class AboutView {
     this.app = app;
   }
 
+  // ===============================
+  //         RENDER METHOD
+  // ===============================
   render() {
+    // === Setup Music ===
     music.stopAllMusic();
     music.allScreensMusic.currentTime = 0;
     music.allScreensMusic.play();
+
+    // === Create the About Screen Layout ===
     this.app.innerHTML = `
       <div class="about-screen">
         <button id="home-button" class="home-button">HOME</button>
@@ -19,7 +30,7 @@ export default class AboutView {
         <div class="about-box">
           <div class="about-scroll">
 
-            <!-- Page 1 -->
+            <!-- === Page 1: Game Purpose === -->
             <div class="about-container">
               <div class="about-image" style="background-image: url('assets/images/about_section/right_side_walking.png');"></div>
               <div class="about-content">
@@ -28,7 +39,7 @@ export default class AboutView {
               </div>
             </div>
 
-            <!-- Page 2 -->
+            <!-- === Page 2: Learning Benefits === -->
             <div class="about-container">
               <div class="about-image" style="background-image: url('assets/images/about_section/doctor.png');"></div>
               <div class="about-content">
@@ -37,7 +48,7 @@ export default class AboutView {
               </div>
             </div>
 
-            <!-- Page 3 -->
+            <!-- === Page 3: Audience === -->
             <div class="about-container">
               <div class="about-image gold-ribbon-img" style="background-image: url('assets/images/about_section/gold_ribbon.png');"></div>
               <div class="about-content">
@@ -46,7 +57,7 @@ export default class AboutView {
               </div>
             </div>
 
-            <!-- Page 4 -->
+            <!-- === Page 4: Final Message === -->
             <div class="about-container">
               <div class="about-image golden-apple-img" style="background-image: url('assets/images/about_section/golden_apple.png');"></div>
               <div class="about-content">
@@ -59,6 +70,9 @@ export default class AboutView {
       </div>
     `;
 
+    // ===============================
+    //      HOME BUTTON LOGIC
+    // ===============================
     document.getElementById('home-button').addEventListener('click', () => {
       sfx.sfxButton.currentTime = 0;  
       sfx.sfxButton.play();
