@@ -1,3 +1,9 @@
+// ===============================
+//        MAIN MENU VIEW
+//  Loads main screen with nav
+//  and connects button logic
+// ===============================
+
 import GameView from './GameView.js';
 import TutorialView from './TutorialView.js';
 import HighScoresView from './HighScoresView.js';
@@ -5,15 +11,24 @@ import AboutView from './AboutView.js';
 import music from '../../assets/audio/music/music.js';
 import sfx from '../../assets/audio/sfx/sfx.js';  // default import is an object
 
+// ===============================
+//      MAIN MENU MUSIC SETUP
+// ===============================
+
 music.mainMenuMusic.play();
 music.ingameMusic.pause();
 music.ingameMusic.currentTime = 0;
+
+// ===============================
+//       MAIN MENU VIEW CLASS
+// ===============================
 
 export default class MainMenuView {
   constructor(app) {
     this.app = app;
   }
 
+  // ========== RENDER HTML ==========
   render() {
     this.app.innerHTML = `
       <main class="main-menu">
@@ -41,11 +56,13 @@ export default class MainMenuView {
       </main>
     `;
 
-    // call this AFTER the HTML is rendered
+    // Setup interactions after rendering
     this.setupEventListeners();
   }
 
+  // ========== EVENT LISTENERS ==========
   setupEventListeners() {
+    // --- Play Button ---
     document.getElementById('play-button').addEventListener('click', () => {
       sfx.sfxButton.currentTime = 0;
       sfx.sfxButton.play();
@@ -53,6 +70,7 @@ export default class MainMenuView {
       new GameView(this.app).render();
     });
 
+    // --- Tutorial Button ---
     document.getElementById('tutorial-button').addEventListener('click', () => {
       sfx.sfxButton.currentTime = 0;
       sfx.sfxButton.play();
@@ -60,6 +78,7 @@ export default class MainMenuView {
       new TutorialView(this.app).render();
     });
 
+    // --- Scores Button ---
     document.getElementById('scores-button').addEventListener('click', () => {
       sfx.sfxButton.currentTime = 0;
       sfx.sfxButton.play();
@@ -67,6 +86,7 @@ export default class MainMenuView {
       new HighScoresView(this.app).render();
     });
 
+    // --- About Button ---
     document.getElementById('about-button').addEventListener('click', () => {
       sfx.sfxButton.currentTime = 0;
       sfx.sfxButton.play();
@@ -75,6 +95,7 @@ export default class MainMenuView {
     });
   }
 
+  // ========== CLEAR SCREEN ==========
   cleanup() {
     this.app.innerHTML = '';
   }
