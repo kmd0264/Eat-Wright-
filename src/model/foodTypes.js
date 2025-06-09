@@ -1,8 +1,11 @@
 // src/model/foodTypes.js
 
+// List of the available food types in the game
+// Each food item has a name, image source, and a type (healthy or junk)
+
 const foodTypes = [
   // Healthy food items
-  { name: 'Apple',       imgSrc: 'assets/images/healthy_foods/Apple.png',        type: 'healthy' },
+  { name: 'Apple',       imgSrc: 'assets/images/healthy_foods/Apple.png',        type: 'healthy' },   
   { name: 'Avocado',     imgSrc: 'assets/images/healthy_foods/Avocado.png',      type: 'healthy' },
   { name: 'Banana',      imgSrc: 'assets/images/healthy_foods/Banana.png',       type: 'healthy' },
   { name: 'Eggs',        imgSrc: 'assets/images/healthy_foods/Eggs.png',         type: 'healthy' },
@@ -14,7 +17,7 @@ const foodTypes = [
   { name: 'Strawberry',  imgSrc: 'assets/images/healthy_foods/Strawberry.png',   type: 'healthy' },
 
   // Junk food items
-  { name: 'Burger',      imgSrc: 'assets/images/junk_foods/Burger.png',          type: 'junk' },
+  { name: 'Burger',      imgSrc: 'assets/images/junk_foods/Burger.png',          type: 'junk' },      
   { name: 'Cake',        imgSrc: 'assets/images/junk_foods/Cake_red_velvet.png', type: 'junk' },
   { name: 'Chicken',     imgSrc: 'assets/images/junk_foods/Chicken_leg.png',     type: 'junk' },
   { name: 'Fries',       imgSrc: 'assets/images/junk_foods/French_fries.png',    type: 'junk' },
@@ -26,7 +29,7 @@ const foodTypes = [
   { name: 'Tiramisu',    imgSrc: 'assets/images/junk_foods/Tiramisu.png',        type: 'junk' },
 ];
 
-// Preload food images so they're ready when drawn
+// Preload the food images so they are ready when drawn in the game
 foodTypes.forEach(f => {
   f.img = new Image();
   f.img.src = f.imgSrc;
