@@ -6,16 +6,16 @@
 function spawnFood(doctor, foodTypes) {
   const foodObj = foodTypes[Math.floor(Math.random() * foodTypes.length)];
   return {
-    x: doctor.x + doctor.width * 0.88,
-    y: doctor.y + doctor.height - 28,
-    width: 25,
-    height: 25,
-    type: foodObj.type,
-    img: foodObj.img,
-    name: foodObj.name,
-    velocityX: 2 + Math.random() * 1,
-    falling: false,
-    decidedLadder: null,
+    x: doctor.x + doctor.width * 0.88,    // Starts near at the right edge of the doctor
+    y: doctor.y + doctor.height - 28,     // Starts just above the bottom of the doctor
+    width: 25,                            // Food item width (pixels)
+    height: 25,                           // Food item height (pixels)
+    type: foodObj.type,                   // Type of food (apple, banana, hotdog)
+    img: foodObj.img,                     // Image for this food item
+    name: foodObj.name,                   // Name of the food
+    velocityX: 2 + Math.random() * 1,     // Initial horizontal speed (randomized)
+    falling: false,                       // Whether the food is currently falling
+    decidedLadder: null,                  // Ladder chosen for sliding
   };
 }
 
