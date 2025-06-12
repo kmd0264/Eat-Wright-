@@ -1,0 +1,1124 @@
+/* ===============================  
+          GLOBAL STYLES  
+================================== */
+
+/* === BASE RESET (remove default spacing and enforce layout rules) === */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;       /* ensure body fills vertical space */
+  width: 100vw;            /* full width of the viewport */
+  box-sizing: border-box;  /* include padding & border in width/height */
+  font-family: 'Silkscreen';
+  background: #000;        /* default background color */
+  overflow-x: hidden;      /* prevent horizontal scrollbars */
+  overflow-y: hidden;      /* prevent vertical scrollbars */
+}
+
+
+/* === FONT SETUP (custom pixel-style font) === */
+@font-face { 
+  font-family: 'Silkscreen'; 
+  src: url('../assets/fonts/Silkscreen/slkscr.ttf') format('truetype'); 
+  font-weight: 400; 
+  font-style: normal; 
+}
+
+/* === Apply global font to text + UI elements === */
+body, button, input { 
+  font-family: 'Silkscreen', monospace, sans-serif;  
+}
+
+/* ================================================================================================================================================ */  
+
+/* ===============================  
+          MAIN MENU STYLES  
+================================== */
+
+/* === MAIN MENU LAYOUT === */
+/* Fullscreen flex container with blurred sidebar and title area */
+.main-menu { 
+  display: flex; 
+  width: 100vw; 
+  height: 100vh; 
+  background:  
+    linear-gradient(#031d25b3),  
+    url('https://img-cdn.pixlr.com/image-generator/history/681f45adb48eb1a797299ae8/b71dedab-4fff-4915-953f-ca97f260d333/preview.webp') center/cover; 
+}
+
+/* === SIDEBAR (left column with menu buttons) === */
+.menu-sidebar { 
+  width: min(90vw, 400px);                         /* responsive width */
+  padding: clamp(30px, 8vw, 80px) clamp(20px, 6vw, 60px); /* responsive inner padding */
+  background: rgba(0, 0, 0, 0.1);                  /* translucent background */
+  border-right: 4px solid #68696a;                /* vertical divider line */
+  display: flex; 
+  flex-direction: column; 
+  gap: 100px;                                      /* spacing between buttons */
+  backdrop-filter: blur(10px);                    /* background blur */
+}
+
+/* === MAIN AREA (right side with the game title) === */
+.menu-main { 
+  flex: 1; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+
+/* ===============================
+          MENU BUTTONS
+================================== */
+
+/* === Universal style for all menu buttons (Play, Tutorial, etc.) === */
+.menu-button { 
+  display: flex; 
+  align-items: center; 
+  flex-direction: row-reverse;                   /* icon on the right side */
+  justify-content: flex-start; 
+  gap: 15px; 
+  background: linear-gradient(#6f7070, #68696a); 
+  border: none; 
+  border-radius: 50px; 
+  color: white; 
+  padding: clamp(2rem, 6vw, 2rem);              /* responsive padding */
+  font-size: clamp(1.2rem, 4vw, 3rem);          /* responsive text */
+  text-transform: uppercase; 
+  cursor: pointer; 
+  width: 100%; 
+  text-shadow: 4px 4px 0 #000; 
+  transition: all 0.3s; 
+  font-weight: 400;
+}
+
+/* === Button hover animation === */
+.menu-button:hover { 
+  transform: translateY(-3px); 
+  box-shadow:  
+    0 5px 0 rgba(255, 255, 255, 0.7) inset, 
+    0 12px 0 rgb(58, 57, 57); 
+}
+
+
+/* ===============================
+          BUTTON ICONS
+================================== */
+
+/* === Icon size inside each button === */
+.menu-button img { 
+  height: 60px; 
+  width: 60px; 
+  margin-right: 4px; 
+}
+
+/* === Individual button icon spacing overrides === */
+#play-button img      { margin-right: 55px; }
+#tutorial-button      { gap: 5px; }  /* tighter spacing between icon and text */
+#tutorial-button img  { margin-right: 10px; margin-left: 10px; }
+#scores-button img    { margin-right: 25px; }
+#about-button img     { margin-right: 40px; }
+
+
+/* ===============================
+          MAIN TITLE
+================================== */
+
+/* === Game title: "Eat Wright!" === */
+.game-title { 
+  font-size: clamp(2.5rem, 8vw, 10rem); 
+  color: #d7b221; 
+  text-shadow: 10px 7px 0 #000, 5px 5px 0 rgba(0, 0, 0, 0.3); 
+  font-weight: 700;
+  animation: float 3s ease-in-out infinite;     /* subtle floating animation */
+}
+
+
+/* ===============================
+          ANIMATIONS
+================================== */
+
+/* === Float animation for title === */
+@keyframes float { 
+  0%, 100% { transform: translateY(0); } 
+  50%       { transform: translateY(-8px); } 
+}
+
+/* ================================================================================================================================================ */  
+
+/* ===============================  
+          SCORES SCREEN STYLES  
+================================== */
+
+
+/* === SCORES PAGE CONTAINER === */
+/* Fullscreen block with padding and background */
+.scores-screen {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  background: #525252;
+  padding: clamp(16px, 4vw, 40px);
+  box-sizing: border-box;
+  display: block;
+}
+
+
+/* === SCORE GRID LAYOUT (3 columns) === */
+.scores-grid { 
+  display: grid; 
+  grid-template-columns: 1fr 3fr 1fr;  /* rank | name | score */
+  align-items: stretch;  
+  width: auto; 
+  max-width: auto; 
+  gap: 30px; 
+}
+
+
+/* === GRID COLUMN STYLING === */
+/* Columns for RANK, NAME, and SCORE */
+.rank-column,
+.title-column,
+.points-column {
+  display: grid;
+  grid-template-rows: auto;
+  background: #D9D9D9;
+  border-radius: 15px;
+  padding: clamp(12px, 3vw, 25px) clamp(8px, 2vw, 20px);
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+
+/* ===============================
+          TYPOGRAPHY
+================================== */
+
+/* === Score screen main title === */
+.scores-title {
+  color: #d7b221;
+  font-size: clamp(2.5rem, 7vw, 8rem);
+  margin: 0 0 15px 0;
+  text-align: center;
+  text-shadow: 6px 6px 0 #000;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  clear: both;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* === Column headers (RANK / NAME / POINTS) === */
+.scores-grid h3 {
+  color: #d7b221;
+  font-size: clamp(1.5rem, 4vw, 4.5rem);
+  height: auto;
+  min-height: 40px;
+  margin: 0 0 1px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  text-shadow: 4px 4px 0 #000;
+}
+
+
+/* ===============================
+          SCORE ENTRIES
+================================== */
+
+/* === Score entry blocks inside each column === */
+.rank-column div,
+.title-column div,
+.points-column div {
+  min-height: clamp(40px, 7vw, 70px);
+  font-size: clamp(1.2rem, 3vw, 3rem);
+  display: flex;
+  align-items: center;
+  padding: 10px 5px;
+  margin: 10px;
+  color: #000000;
+  border-radius: 8px;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* === Rank entry column: vertically stacked center === */
+.rank-column div {
+  margin: 5px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === Score column spacing tweak === */
+.points-column div {
+  margin-left: 13px;
+}
+
+
+/* ===============================
+          BUTTONS
+================================== */
+
+/* === HOME button (top left) === */
+.home-button {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  z-index: 2;
+  background: #D9D9D9;
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  padding: 25px 55px;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.home-button:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 3px 0 rgba(255, 255, 255, 0.7) inset,
+    0 7px 0 rgb(58, 57, 57);
+}
+
+
+/* ===============================
+          RANK ICONS
+================================== */
+
+/* === Container for each rank entry (icon or number) === */
+.rank-entry {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* === Add icon on top of rank if class and data-icon are set === */
+.rank-entry.has-icon::after {
+  content: "";
+  display: block;
+  width: 95px;
+  height: 95px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+}
+
+/* === Rank icon variations === */
+.rank-entry.has-icon[data-icon="gold"]::after { 
+background-image: url('../assets/images/scores_section/gold.png'); 
+} 
+
+.rank-entry.has-icon[data-icon="silver"]::after { 
+  background-image: url('../assets/images/scores_section/silver.png'); 
+} 
+
+.rank-entry.has-icon[data-icon="bronze"]::after { 
+  background-image: url('../assets/images/scores_section/bronze.png'); 
+} 
+
+
+
+/* === Default rank entry if no icon === */
+.rank-entry:not(.has-icon) {
+  font-size: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1px auto;
+}
+
+
+/* ===============================
+         SCORE ENTRY ANIMATION
+================================== */
+
+/* === Fade-in effect for each score row === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.rank-column div,
+.title-column div,
+.points-column div {
+  animation: fadeIn 0.6s ease-out forwards;
+  animation-delay: calc(var(--order) * 0.1s); /* use --order to stagger */
+}
+
+
+/* ===============================
+            UTILITY
+================================== */
+
+/* === Used to make full overlay fit screen === */
+#app > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* ================================================================================================================================================ */  
+
+/* ===============================   
+          ABOUT SCREEN STYLES  
+================================== */
+
+
+/* === MAIN LAYOUT CONTAINER === */
+/* Fullscreen vertical flex layout with padding */
+.about-screen {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  background: #525252;
+  padding: clamp(30px, 8vw, 100px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* ===============================
+            TITLE
+================================== */
+
+/* === Main About page title === */
+.about-title { 
+  color: #d7b221; 
+  margin-top: 0; 
+  margin-bottom: 0; 
+  font-size: clamp(2.5rem, 7vw, 8rem); 
+  text-align: center; 
+  text-shadow: 6px 6px 0 #000; 
+  animation: float 3s ease-in-out infinite;
+}
+
+
+/* ===============================
+          SCROLLABLE BOX
+================================== */
+
+/* === Scrollable content container === */
+.about-box { 
+  background: #D9D9D9; 
+  border-radius: 15px; 
+  padding: clamp(20px, 5vw, 50px);
+  max-width: 1000px;
+  width: 100%;
+  max-height: 70vh;
+  height: auto;
+  gap: 10px;
+  align-items: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  margin-top: 30px;
+}
+
+/* === Vertical scrolling content wrapper === */
+.about-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+
+/* ===============================
+         ABOUT CONTENT ROWS
+================================== */
+
+/* === Row layout: Image + Text side-by-side === */
+.about-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* image | text */
+  gap: 10px;
+  align-items: center;
+  overflow: hidden;
+  max-height: 70vh;
+  height: auto;
+  width: 100%;
+  margin-top: 0;
+}
+
+
+/* ===============================
+          IMAGES
+================================== */
+
+/* === Generic image block with animation === */
+.about-image {
+  width: 100%;
+  height: 375px;
+  margin: 0 50px 70px 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+/* === Specific asset sizes for ribbon and apple === */
+.gold-ribbon-img,
+.golden-apple-img {
+  height: 250px;
+}
+
+
+/* ===============================
+           TEXT CONTENT
+================================== */
+
+/* === Text block beside each image === */
+.about-content {
+  font-size: 2.2rem;
+  line-height: 1.7;
+  margin-left: 45px;
+  margin-bottom: 90px;
+  color: #000;
+  padding: 0 20px;
+  gap: 0;
+  text-align: center;
+  animation: slideInRight 0.6s ease-out;
+}
+
+/* === Game name highlight inside text === */
+.game-name {
+  color: #d7b221;
+  font-weight: bold;
+  font-size: 3rem;
+  text-shadow: 2px 2px 0 #000;
+}
+
+
+/* ===============================
+        CUSTOM SCROLLBAR
+================================== */
+
+.about-box::-webkit-scrollbar {
+  width: 25px;
+  height: 1px;
+}
+
+.about-box::-webkit-scrollbar-thumb {
+  background-color: #d7b221;
+  border-radius: 5px;
+}
+
+.about-box::-webkit-scrollbar-track {
+  background-color: #333;
+  border-radius: 5px;
+}
+
+
+/* ===============================
+           ANIMATIONS
+================================== */
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+/* ===============================
+           HOME BUTTON
+================================== */
+
+.home-button {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  z-index: 2;
+  background: #D9D9D9;
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  padding: 25px 55px;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.home-button:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 3px 0 rgba(255, 255, 255, 0.7) inset,
+    0 7px 0 rgb(58, 57, 57);
+}
+
+/* ================================================================================================================================================ */  
+
+/* ===============================  
+          GAME AREA RESPONSIVE  
+================================== */
+
+
+/* === Fullscreen game container === */
+/* Wraps the canvas and controls layout */
+.game-screen {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #1C1C1C;
+  overflow: hidden;    /* hides anything beyond boundaries */
+  z-index: 1;
+}
+
+
+/* === Centered game area wrapper === */
+/* Ensures the canvas is centered both vertically and horizontally */
+.game-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: #1C1C1C;
+}
+
+
+/* === Main Game Canvas === */
+/* Responsive canvas with aspect ratio and padding */
+#gameCanvas {
+  width: 100%;
+  max-width: 90vw;
+  max-height: 90vh;
+  aspect-ratio: 16 / 9;
+  border-radius: 15px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ================================================================================================================================================ */  
+
+/* ===============================  
+       FUN FACT & RESULT OVERLAY  
+================================== */
+
+/* === Fullscreen-centered fun fact box === */
+.funfact-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #d9d9d9;
+  padding: 60px;
+  border-radius: 15px;
+  font-size: 1.25em;
+  text-align: center;
+  max-width: 100vw;
+  width: 1000px;
+  z-index: 10;
+}
+
+/* === Fun fact main text === */
+.funfact-text {
+  font-size: 3rem;
+  color: #000;
+  margin-bottom: 40px;
+  line-height: 1.5;
+  animation: slideInRight 0.6s ease-out;
+}
+
+/* === Fun image (e.g. banana) === */
+.funfact-img {
+  width: 12.5rem;
+  height: auto;
+  margin-bottom: 40px;
+}
+
+/* === Text below image ("Ready? Press SPACE") === */
+.start-text {
+  font-size: 2.5rem;
+  color: #000;
+  margin-top: 20px;
+  animation: slideInLeft 0.6s ease-out;
+}
+
+/* === Yellow highlight in text === */
+.highlight-yellow {
+  color: #d7b221;
+  font-size: 3.5rem;
+  font-weight: bold;
+  text-shadow: 5px 5px 0 #000;
+}
+
+/* === Inline grouping (text + image icons) === */
+.inline-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* === Floating animation for spacebar icon === */
+.spacebar-img {
+  height: 60px;
+  display: inline-block;
+  animation: float 1.5s ease-in-out infinite;
+}
+
+
+/* ===============================
+        RESULT OVERLAY BOX
+================================== */
+
+/* === Same layout as funfact-overlay === */
+.result-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #d9d9d9;
+  padding: 60px;
+  border-radius: 15px;
+  font-size: 1.25em;
+  text-align: center;
+  max-width: 100vw;
+  width: 1000px;
+  z-index: 10;
+}
+
+/* === Main result text ("You ate well!") === */
+.result-text {
+  font-size: 3rem;
+  color: #000;
+  margin-bottom: 40px;
+  line-height: 1.5;
+  animation: slideInRight 0.6s ease-out;
+}
+
+/* === Main result image (e.g. golden apple) === */
+.game-result-img {
+  max-width: 100%;
+  height: auto;
+  margin: 2rem 0;
+}
+
+
+/* ===============================
+     IMAGE SIZE VARIATIONS
+================================== */
+
+/* === Smaller icons (e.g. broken egg) === */
+.result-img--small {
+  max-width: 8rem;
+  height: auto;
+}
+
+/* === Angry apple graphic === */
+.result-img--angry-apple {
+  max-width: 18.75rem;
+}
+
+/* === Golden apple graphic === */
+.result-img--golden-apple {
+  max-width: 17rem;
+}
+
+/* === Generic small result image === */
+.small-result-img {
+  width: 130px;
+  max-width: 20vw;
+  max-height: 140px;
+}
+
+
+/* ===============================
+         END SCREEN TEXT
+================================== */
+
+/* === End message (e.g. "Game Over") === */
+.end-text {
+  font-size: 2.5rem;
+  color: #000;
+  margin-top: 20px;
+  animation: slideInLeft 0.6s ease-out;
+}
+
+/* === Final highlight (e.g. "+20 points") === */
+.highlight-yellow-result {
+  color: #d7b221;
+  font-size: 6rem;
+  font-weight: bold;
+  text-shadow: 5px 5px 0 #000;
+}
+
+
+/* ===============================
+          RESULTS BUTTON
+================================== */
+
+/* === "Scores" button in result overlay === */
+.results_scores_button {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  z-index: 2;
+  background: #D9D9D9;
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  padding: 25px 55px;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.results_scores_button:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 3px 0 rgba(255, 255, 255, 0.7) inset,
+    0 7px 0 rgb(58, 57, 57);
+}
+
+/* ================================================================================================================================================ */  
+
+/* ===============================  
+            TUTORIAL STYLES  
+================================== */
+
+
+/* === MAIN LAYOUT === */
+/* Fullscreen vertical layout for tutorial */
+.tutorial-screen {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #525252;
+  padding: 15px clamp(30px, 8vw, 100px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ===============================
+           TITLE HEADER
+================================== */
+
+/* === Main tutorial screen title === */
+.tutorial-title { 
+  color: #d7b221; 
+  margin-top: 0; 
+  margin-bottom: 0; 
+  font-size: clamp(2.5rem, 7vw, 7rem); 
+  text-align: center; 
+  text-shadow: 6px 6px 0 #000; 
+  animation: float 3s ease-in-out infinite; 
+}
+
+
+/* ===============================
+       TUTORIAL CONTENT BOX
+================================== */
+
+/* === Box container for video + text === */
+.tutorial-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;     /* <- Use flex-start so content starts at the top */
+  background: #D9D9D9;
+  border-radius: 15px;
+  padding: 40px 32px 36px 32px;    /* More bottom padding for caption space */
+  max-width: 1000px;
+  width: 100%;
+  height: auto;                    /* Remove height: 100% */
+  max-height: 75vh;
+  box-sizing: border-box;
+  overflow: hidden;                /* Hide any overflow (no scrollbars) */
+  margin-top: 30px;
+  gap: 10px;                       /* More gap for spacing between content/caption */
+}
+
+
+/* === Embedded video styles === */
+.tutorial-box video {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 0px;
+  max-width: 950px;
+}
+
+
+/* ===============================
+        TEXT CONTENT BELOW VIDEO
+================================== */
+
+/* === Paragraph explanation in tutorial === */
+.tutorial-content {
+  font-size: 2.2rem;
+  line-height: 1.7;
+  margin-left: 45px;
+  margin-bottom: 90px;
+  color: #000;
+  padding: 0 20px;
+  gap: 0;
+  text-align: center;
+  animation: slideInRight 0.6s ease-out;
+}
+
+
+
+/* ===============================
+            ARROW NAVIGATION
+================================== */
+
+/* === Left/Right arrow buttons for video nav === */
+.arrow-btn {
+  background: none;
+  border: none;
+  color: #ffe11f;
+  font-size: 15rem;
+  cursor: pointer;
+  transition: transform 0.1s, opacity 0.2s;
+  user-select: none;
+  margin: 0 40px;
+  outline: none;
+  line-height: 1;
+  text-shadow: 6px 6px 0 #000;
+}
+
+.arrow-btn:active {
+  transform: scale(0.93);
+}
+
+.arrow-btn:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+/* === Wraps the arrows on both sides === */
+.tutorial-arrows {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+
+/* ===============================
+      ANIMATED ICON IN CAPTION
+================================== */
+
+/* === For inline icons in the caption === */
+.tutorial-video-caption img {
+  height: 50px;
+  width: auto;
+  vertical-align: middle;
+  display: inline-block;
+  margin: 0 3px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.tutorial-video-caption {
+  width: 100%;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 2.3rem;
+  color: #222;
+}
+
+
+
+.tutorial-foods-slide {
+  min-height: 470px;
+  max-width: 850px;
+  width: 100%;
+  border-radius: 8px;
+  background: #1C1C1C;
+  padding: 40px 32px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0; 
+}
+
+.tutorial-box video {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 0px;
+  max-width: 950px;
+}
+
+
+.food-groups-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 50px;
+  margin-bottom: 20px;
+}
+
+/* Each group (Healthy or Junk) */
+.food-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* Make the food items in a horizontal row, centered */
+.foods-list-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, auto);
+  gap: 24px 20px;
+  justify-items: center;
+}
+
+
+
+
+.food-item-label {
+  color: #D9D9D9;
+  font-size: 1.2rem;
+  margin-top: 4px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/* Single food icon+name */
+.food-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.1rem;
+  text-align: center;
+  min-width: 70px;
+  letter-spacing: 2px;
+}
+
+/* Food image */
+.food-item img {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+  margin-bottom: 4px;
+  animation: 3s ease-in-out 0s infinite normal none running float;
+}
+
+/* The summary text at the bottom */
+.foods-summary {
+  margin-top: 32px;
+  font-size: 1.7rem;
+  text-align: center;
+}
+
+/* Label above each group */
+.foods-label {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.healthy-label { color: #3bff80; }
+.junk-label { color: #ff5959; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#sound-control-container {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 999;
+  user-select: none;
+}
+
+.sound-icon-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+}
+
+.sound-icon-img {
+  width: 60px;
+  height: 60px;
+}
+
+.sound-slider-panel {
+  display: none;
+  position: absolute;
+  right: 60px;
+  top: 12px;
+  background: rgba(30,30,30,0.95);
+  border-radius: 10px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.16);
+  min-width: 140px;
+  transition: opacity 0.2s;
+}
+
+.volume-slider {
+  accent-color: #FFD600;
+  width: 120px;
+}
+
+
+
+
+
+
+
+
+
