@@ -13,4 +13,24 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Create and render the main menu screen
   new MainMenuView(app).render();
+
+  // Also trigger site scaling now (first load)
+  scaleSite();
 });
+
+// Responsive scaling for the whole site
+function scaleSite() {
+  const wrapper = document.getElementById('app-scale-wrapper');
+  if (!wrapper) return;
+  const baseWidth = 1280;  // set to your intended design width
+  const baseHeight = 720;  // set to your intended design height
+  const scaleX = window.innerWidth / baseWidth;
+  const scaleY = window.innerHeight / baseHeight;
+  const scale = Math.min(scaleX, scaleY, 0.8); // or use 0.75 for 75%
+  wrapper.style.transform = `scale(${scale})`;
+  wrapper.style.transformOrigin = "top left";
+  wrapper.style.width = (100 / scale) + "vw";
+  wrapper.style.height = (100 / scale) + "vh";
+}
+
+window.addEventListener('resize', scaleSite);
